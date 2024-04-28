@@ -31,6 +31,14 @@ class MainViewController: UIViewController {
 
                 let section = NSCollectionLayoutSection(group: group)
                 section.interGroupSpacing = spacing
+
+                let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
+                    layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .absolute(32)),
+                    elementKind: "RecommendedHeader",
+                    alignment: .top
+                )
+                section.boundarySupplementaryItems = [sectionHeader]
+
                 return section
             }
             return layout
@@ -40,6 +48,7 @@ class MainViewController: UIViewController {
 
 extension MainViewController {
     private func registerCells() {
+        collectionView.register(UINib(nibName: "HeaderCell", bundle: nil), forSupplementaryViewOfKind: "RecommendedHeader", withReuseIdentifier: "HeaderCell")
         collectionView.register(UINib(nibName: "IllustCell", bundle: nil), forCellWithReuseIdentifier: "IllustCell")
     }
 }
@@ -62,4 +71,16 @@ extension MainViewController: UICollectionViewDataSource {
         return cell
     }
 
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "HeaderCell", for: indexPath) as? HeaderCell else {
+            fatalError()
+        }
+        switch kind {
+        case "RecommendedHeader":
+            header.bind("Recommended")
+            return header
+        default:
+            fatalError()
+        }
+    }
 }
