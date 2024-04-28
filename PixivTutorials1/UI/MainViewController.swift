@@ -5,6 +5,7 @@
 //  Created by koala panda on 2024/04/28.
 //
 
+import IllustAPIMock
 import UIKit
 
 class MainViewController: UIViewController {
@@ -15,22 +16,41 @@ class MainViewController: UIViewController {
         }
     }
 
-    private var sections: [Section] = []
+    private var sections: [Section] = [] {
+        didSet {
+            Task { @MainActor in
+                self.collectionView.collectionViewLayout = {
+                    let layout = UICollectionViewCompositionalLayout { (sectionIndex, environment) -> NSCollectionLayoutSection? in
+                        return self.sections[sectionIndex].layoutSection()
+                    }
+                    return layout
+                }()
+                self.collectionView.reloadData()
+            }
+        }
+    }
+
+    private let api = IllustAPIMock()
 
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        sections = [
-            RankingIllustSection(),
-            IllustSection(parentWidht: self.view.bounds.width)
-        ]
-        collectionView.collectionViewLayout = {
-            let layout = UICollectionViewCompositionalLayout { (sectionIndex, environment) -> NSCollectionLayoutSection? in
-                return self.sections[sectionIndex].layoutSection()
+
+        Task {
+            do {
+                let rankingIllusts = try await api.getRanking()
+                let recommendedIllusts = try await api.getRecommended()
+                print(rankingIllusts, recommendedIllusts)
+                sections = [
+                    RankingIllustSection(illusts: rankingIllusts),
+                    IllustSection(illusts: recommendedIllusts, parentWidht: self.view.bounds.width)
+                ]
+
+            } catch {
+                print(error)
             }
-            return layout
-        }()
+        }
+
     }
 }
 

@@ -5,11 +5,14 @@
 //  Created by koala panda on 2024/04/28.
 //
 
+import IllustAPIMock
 import UIKit
 
 struct RankingIllustSection: Section {
+    let illusts: [Illust]
+
     var numberOfItems: Int {
-        return 4
+        return illusts.count
     }
 
     func layoutSection() -> NSCollectionLayoutSection {
@@ -39,6 +42,7 @@ struct RankingIllustSection: Section {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RankingIllustCell", for: indexPath) as? RankingIllustCell else {
             fatalError()
         }
+        cell.bind(illusts[indexPath.item])
         return cell
     }
 }

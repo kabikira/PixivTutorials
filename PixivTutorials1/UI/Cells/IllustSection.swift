@@ -1,10 +1,12 @@
+import IllustAPIMock
 import UIKit
 
 struct IllustSection: Section {
+    let illusts: [Illust]
     let parentWidht: CGFloat
 
     var numberOfItems: Int {
-        return 8
+        return illusts.count
     }
 
     func layoutSection() -> NSCollectionLayoutSection {
@@ -34,6 +36,7 @@ struct IllustSection: Section {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "IllustCell", for: indexPath) as? IllustCell else {
             fatalError()
         }
+        cell.bind(illusts[indexPath.item])
         return cell
     }
 }

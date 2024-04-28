@@ -25,6 +25,9 @@
 		3B4ED0B22BDE3FCC0000D416 /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4ED0B12BDE3FCC0000D416 /* Section.swift */; };
 		3B4ED0B42BDE40CA0000D416 /* IllustSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4ED0B32BDE40CA0000D416 /* IllustSection.swift */; };
 		3B4ED0B62BDE548E0000D416 /* RankingIllustSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4ED0B52BDE548E0000D416 /* RankingIllustSection.swift */; };
+		3B4ED0B92BDE5FEC0000D416 /* IllustAPIMock in Frameworks */ = {isa = PBXBuildFile; productRef = 3B4ED0B82BDE5FEC0000D416 /* IllustAPIMock */; };
+		3B4ED0C52BDE87530000D416 /* Nuke in Frameworks */ = {isa = PBXBuildFile; productRef = 3B4ED0C42BDE87530000D416 /* Nuke */; };
+		3B4ED0C72BDE87530000D416 /* NukeExtensions in Frameworks */ = {isa = PBXBuildFile; productRef = 3B4ED0C62BDE87530000D416 /* NukeExtensions */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +77,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3B4ED0B92BDE5FEC0000D416 /* IllustAPIMock in Frameworks */,
+				3B4ED0C52BDE87530000D416 /* Nuke in Frameworks */,
+				3B4ED0C72BDE87530000D416 /* NukeExtensions in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -117,19 +123,9 @@
 		3B4ED06E2BDD64110000D416 /* PixivTutorials1 */ = {
 			isa = PBXGroup;
 			children = (
+				3B4ED0BA2BDE72F70000D416 /* UI */,
 				3B4ED06F2BDD64110000D416 /* AppDelegate.swift */,
 				3B4ED0712BDD64110000D416 /* SceneDelegate.swift */,
-				3B4ED0732BDD64110000D416 /* MainViewController.swift */,
-				3B4ED0AB2BDE3C560000D416 /* RankingIllustCell.swift */,
-				3B4ED0AF2BDE3D360000D416 /* RankingIllustCell.xib */,
-				3B4ED0A72BDE12E80000D416 /* HeaderCell.swift */,
-				3B4ED0B12BDE3FCC0000D416 /* Section.swift */,
-				3B4ED0B32BDE40CA0000D416 /* IllustSection.swift */,
-				3B4ED0B52BDE548E0000D416 /* RankingIllustSection.swift */,
-				3B4ED0A92BDE131A0000D416 /* HeaderCell.xib */,
-				3B4ED0A32BDD7B4B0000D416 /* IllustCell.xib */,
-				3B4ED09F2BDD76CF0000D416 /* IllustCell.swift */,
-				3B4ED0752BDD64110000D416 /* Main.storyboard */,
 				3B4ED0782BDD64130000D416 /* Assets.xcassets */,
 				3B4ED07A2BDD64130000D416 /* LaunchScreen.storyboard */,
 				3B4ED07D2BDD64130000D416 /* Info.plist */,
@@ -154,6 +150,32 @@
 			path = PixivTutorials1UITests;
 			sourceTree = "<group>";
 		};
+		3B4ED0BA2BDE72F70000D416 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				3B4ED0732BDD64110000D416 /* MainViewController.swift */,
+				3B4ED0752BDD64110000D416 /* Main.storyboard */,
+				3B4ED0BB2BDE730B0000D416 /* Cells */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		3B4ED0BB2BDE730B0000D416 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				3B4ED0AB2BDE3C560000D416 /* RankingIllustCell.swift */,
+				3B4ED0AF2BDE3D360000D416 /* RankingIllustCell.xib */,
+				3B4ED0A72BDE12E80000D416 /* HeaderCell.swift */,
+				3B4ED0B12BDE3FCC0000D416 /* Section.swift */,
+				3B4ED0B32BDE40CA0000D416 /* IllustSection.swift */,
+				3B4ED0B52BDE548E0000D416 /* RankingIllustSection.swift */,
+				3B4ED0A92BDE131A0000D416 /* HeaderCell.xib */,
+				3B4ED0A32BDD7B4B0000D416 /* IllustCell.xib */,
+				3B4ED09F2BDD76CF0000D416 /* IllustCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -170,6 +192,11 @@
 			dependencies = (
 			);
 			name = PixivTutorials1;
+			packageProductDependencies = (
+				3B4ED0B82BDE5FEC0000D416 /* IllustAPIMock */,
+				3B4ED0C42BDE87530000D416 /* Nuke */,
+				3B4ED0C62BDE87530000D416 /* NukeExtensions */,
+			);
 			productName = PixivTutorials1;
 			productReference = 3B4ED06C2BDD64110000D416 /* PixivTutorials1.app */;
 			productType = "com.apple.product-type.application";
@@ -242,6 +269,10 @@
 				Base,
 			);
 			mainGroup = 3B4ED0632BDD64110000D416;
+			packageReferences = (
+				3B4ED0B72BDE5FEC0000D416 /* XCRemoteSwiftPackageReference "ios-tutorial-api-mock" */,
+				3B4ED0C32BDE87520000D416 /* XCRemoteSwiftPackageReference "Nuke" */,
+			);
 			productRefGroup = 3B4ED06D2BDD64110000D416 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -643,6 +674,43 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		3B4ED0B72BDE5FEC0000D416 /* XCRemoteSwiftPackageReference "ios-tutorial-api-mock" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pixiv/ios-tutorial-api-mock";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+		3B4ED0C32BDE87520000D416 /* XCRemoteSwiftPackageReference "Nuke" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kean/Nuke";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 12.6.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		3B4ED0B82BDE5FEC0000D416 /* IllustAPIMock */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3B4ED0B72BDE5FEC0000D416 /* XCRemoteSwiftPackageReference "ios-tutorial-api-mock" */;
+			productName = IllustAPIMock;
+		};
+		3B4ED0C42BDE87530000D416 /* Nuke */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3B4ED0C32BDE87520000D416 /* XCRemoteSwiftPackageReference "Nuke" */;
+			productName = Nuke;
+		};
+		3B4ED0C62BDE87530000D416 /* NukeExtensions */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3B4ED0C32BDE87520000D416 /* XCRemoteSwiftPackageReference "Nuke" */;
+			productName = NukeExtensions;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 3B4ED0642BDD64110000D416 /* Project object */;
 }
