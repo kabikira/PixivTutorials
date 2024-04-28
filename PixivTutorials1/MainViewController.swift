@@ -15,31 +15,19 @@ class MainViewController: UIViewController {
         }
     }
 
+    private var sections: [Section] = []
+
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        sections = [
+            RankingIllustSection(),
+            IllustSection(parentWidht: self.view.bounds.width)
+        ]
         collectionView.collectionViewLayout = {
             let layout = UICollectionViewCompositionalLayout { (sectionIndex, environment) -> NSCollectionLayoutSection? in
-                let spacing: CGFloat = 8
-                let size: CGFloat = (self.view.bounds.width - spacing) / 2
-
-                let itemSize = NSCollectionLayoutSize(widthDimension: .absolute(size), heightDimension: .fractionalHeight(1))
-                let item = NSCollectionLayoutItem(layoutSize: itemSize)
-
-                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(size))
-                let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
-                group.interItemSpacing = .fixed(spacing)
-
-                let section = NSCollectionLayoutSection(group: group)
-                section.interGroupSpacing = spacing
-
-                let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
-                    layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .absolute(32)),
-                    elementKind: "RecommendedHeader",
-                    alignment: .top
-                )
-                section.boundarySupplementaryItems = [sectionHeader]
-
-                return section
+                return self.sections[sectionIndex].layoutSection()
             }
             return layout
         }()
@@ -49,26 +37,24 @@ class MainViewController: UIViewController {
 extension MainViewController {
     private func registerCells() {
         collectionView.register(UINib(nibName: "HeaderCell", bundle: nil), forSupplementaryViewOfKind: "RecommendedHeader", withReuseIdentifier: "HeaderCell")
+        collectionView.register(UINib(nibName: "HeaderCell", bundle: nil), forSupplementaryViewOfKind: "RankingHeader", withReuseIdentifier: "HeaderCell")
         collectionView.register(UINib(nibName: "IllustCell", bundle: nil), forCellWithReuseIdentifier: "IllustCell")
+        collectionView.register(UINib(nibName: "RankingIllustCell", bundle: nil), forCellWithReuseIdentifier: "RankingIllustCell")
     }
 }
 
 extension MainViewController: UICollectionViewDataSource {
 
-
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
+        return sections.count
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 8
+        return sections[section].numberOfItems
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "IllustCell", for: indexPath) as? IllustCell else {
-            fatalError()
-        }
-        return cell
+        return sections[indexPath.section].configureCell(collectionView: collectionView, indexPath: indexPath)
     }
 
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
@@ -78,6 +64,9 @@ extension MainViewController: UICollectionViewDataSource {
         switch kind {
         case "RecommendedHeader":
             header.bind("Recommended")
+            return header
+        case "RankingHeader":
+            header.bind("Ranking")
             return header
         default:
             fatalError()
