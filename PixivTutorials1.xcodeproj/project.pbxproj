@@ -28,6 +28,7 @@
 		3B4ED0B92BDE5FEC0000D416 /* IllustAPIMock in Frameworks */ = {isa = PBXBuildFile; productRef = 3B4ED0B82BDE5FEC0000D416 /* IllustAPIMock */; };
 		3B4ED0C52BDE87530000D416 /* Nuke in Frameworks */ = {isa = PBXBuildFile; productRef = 3B4ED0C42BDE87530000D416 /* Nuke */; };
 		3B4ED0C72BDE87530000D416 /* NukeExtensions in Frameworks */ = {isa = PBXBuildFile; productRef = 3B4ED0C62BDE87530000D416 /* NukeExtensions */; };
+		3BD264BE2C0948D80072C67C /* IllustViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD264BD2C0948D80072C67C /* IllustViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +71,7 @@
 		3B4ED0B12BDE3FCC0000D416 /* Section.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
 		3B4ED0B32BDE40CA0000D416 /* IllustSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IllustSection.swift; sourceTree = "<group>"; };
 		3B4ED0B52BDE548E0000D416 /* RankingIllustSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingIllustSection.swift; sourceTree = "<group>"; };
+		3BD264BD2C0948D80072C67C /* IllustViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IllustViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,6 +158,7 @@
 				3B4ED0732BDD64110000D416 /* MainViewController.swift */,
 				3B4ED0752BDD64110000D416 /* Main.storyboard */,
 				3B4ED0BB2BDE730B0000D416 /* Cells */,
+				3BD264BD2C0948D80072C67C /* IllustViewModel.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -320,6 +323,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3B4ED0B42BDE40CA0000D416 /* IllustSection.swift in Sources */,
+				3BD264BE2C0948D80072C67C /* IllustViewModel.swift in Sources */,
 				3B4ED0B62BDE548E0000D416 /* RankingIllustSection.swift in Sources */,
 				3B4ED0A12BDD76CF0000D416 /* IllustCell.swift in Sources */,
 				3B4ED0A82BDE12E80000D416 /* HeaderCell.swift in Sources */,

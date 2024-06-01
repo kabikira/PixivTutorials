@@ -5,6 +5,7 @@
 //  Created by koala panda on 2024/04/28.
 //
 
+import Combine
 import IllustAPIMock
 import UIKit
 
@@ -30,25 +31,28 @@ class MainViewController: UIViewController {
         }
     }
 
-    private let api = IllustAPIMock()
-
+    private let viewModel = IllustViewModel(api: IllustAPIMock())
+    private var cancellables = Set<AnyCancellable>()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        Task {
-            do {
-                let rankingIllusts = try await api.getRanking()
-                let recommendedIllusts = try await api.getRecommended()
-                print(rankingIllusts, recommendedIllusts)
-                sections = [
-                    RankingIllustSection(illusts: rankingIllusts),
+        viewModel.$rankingIllsts
+            .combineLatest(viewModel.$recommendedIllusts)
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] rankingIllsts, recommendedIllusts in
+                guard let self = self else {
+                    return
+                }
+                self.sections = [
+                    RankingIllustSection(illusts: rankingIllsts),
                     IllustSection(illusts: recommendedIllusts, parentWidht: self.view.bounds.width)
                 ]
-
-            } catch {
-                print(error)
             }
+            .store(in: &cancellables)
+        
+        Task {
+            await viewModel.fetchIllusts()
         }
 
     }
